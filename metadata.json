@@ -1,0 +1,6 @@
+{
+  "name": "Research Portal",
+  "description": "A research management portal with member groups, real-time manuscript editing, and Google Drive literature storage.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

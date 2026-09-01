@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "Administrator user",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      },
+      "required": ["email"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Member profile",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["email", "name"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "Research group",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name", "members"]
+    },
+    "Manuscript": {
+      "title": "Manuscript",
+      "description": "Real-time manuscript document for a group",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string" },
+        "lastUpdatedBy": { "type": "string" }
+      },
+      "required": ["content"]
+    },
+    "Literature": {
+      "title": "Literature",
+      "description": "Research paper uploaded to Google Drive",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "driveFileId": { "type": "string" },
+        "driveLink": { "type": "string" },
+        "uploadedBy": { "type": "string" },
+        "uploaderName": { "type": "string" },
+        "uploadedAt": { "type": "number" }
+      },
+      "required": ["title", "driveFileId", "driveLink", "uploadedBy"]
+    }
+  },
+  "firestore": {
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "List of administrators."
+    },
+    "/users/{uid}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "List of member users."
+    },
+    "/groups/{groupId}": {
+      "schema": { "$ref": "#/entities/Group" },
+      "description": "Research groups."
+    },
+    "/manuscripts/{groupId}": {
+      "schema": { "$ref": "#/entities/Manuscript" },
+      "description": "Manuscripts for groups."
+    },
+    "/groups/{groupId}/literatures/{literatureId}": {
+      "schema": { "$ref": "#/entities/Literature" },
+      "description": "Literature uploaded by members of a group."
+    }
+  }
+}
